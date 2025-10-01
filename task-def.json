@@ -1,0 +1,31 @@
+{
+  "family": "churn-api-task",
+  "networkMode": "awsvpc",
+  "executionRoleArn": "arn:aws:iam::001393350085:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "churn-api",
+      "image": "74ba432f3904",
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "memory": 512,
+      "cpu": 256,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/churn-api",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ],
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512"
+}
